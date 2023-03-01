@@ -1,7 +1,6 @@
 package valenzuela.carlos.thecheezery
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,15 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-class ProductosActivity : AppCompatActivity() {
+public class ProductosActivity : AppCompatActivity() {
 
     var coldDrinks = ArrayList<Product>()
     var hotDrinks = ArrayList<Product>()
     var sweets = ArrayList<Product>()
     var salties = ArrayList<Product>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +27,13 @@ class ProductosActivity : AppCompatActivity() {
 
         var listview: ListView = findViewById(R.id.listview) as ListView
 
+
         var adaptador: AdaptadorProductos = AdaptadorProductos(this, coldDrinks)
+            adaptador = AdaptadorProductos(this, hotDrinks)
+
         listview.adapter = adaptador
     }
+
     fun agregaProductos(){
         coldDrinks.add(Product("Caramel Frap", R.drawable.caramelfrap, "Caramel syrup meets coffee, milk and ice and whipped cream and buttery caramel sauce layer the love on top.", 5.0))
         coldDrinks.add(Product("Chocolate Frap", R.drawable.chocolatefrap, "Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash.", 6.0))
@@ -59,6 +64,7 @@ class ProductosActivity : AppCompatActivity() {
 
 
     }
+
     private class AdaptadorProductos: BaseAdapter{
         var productos = ArrayList<Product>()
         var contexto: Context? = null
